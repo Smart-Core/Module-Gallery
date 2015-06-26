@@ -1,0 +1,11 @@
+{
+    "name": "smart-core/module-gallery",
+    "require": {
+        "smart-core/cms-bundle": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SmartCore\\Module\\Gallery\\": ""
+        }
+    }
+}
