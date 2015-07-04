@@ -4,7 +4,7 @@ namespace SmartCore\Module\Gallery\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryFormType extends AbstractType
 {
@@ -16,14 +16,14 @@ class GalleryFormType extends AbstractType
                 'choices' => [
                     0 => 'По дате создания',
                     1 => 'По заданной позиции',
-                    //2 => 'По дате последнего обновления',
+                    //2 => 'По дате последнего обновления', // @todo
                 ],
             ])
             ->add('media_collection')
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'SmartCore\Module\Gallery\Entity\Gallery',
