@@ -27,6 +27,9 @@ class GalleryController extends Controller
             case 1:
                 $albumsOrderBy = ['position' => 'ASC'];
                 break;
+            case 2:
+                $albumsOrderBy = ['position' => 'DESC'];
+                break;
             default:
                 $albumsOrderBy = ['id' => 'DESC'];
         }
