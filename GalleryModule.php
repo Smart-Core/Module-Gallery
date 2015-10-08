@@ -6,6 +6,8 @@ use SmartCore\Bundle\CMSBundle\Module\ModuleBundle;
 
 class GalleryModule extends ModuleBundle
 {
+    protected $adminMenuBeforeCode = '<i class="fa fa-object-ungroup"></i>';
+
     /**
      * Получить виджеты для рабочего стола.
      *
