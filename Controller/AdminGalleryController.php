@@ -22,7 +22,7 @@ class AdminGalleryController extends Controller
     public function indexAction(Request $request)
     {
         $gallery = new Gallery();
-        $gallery->setUserId($this->getUser());
+        $gallery->setUser($this->getUser());
 
         $form = $this->createForm(new GalleryFormType(), $gallery);
         $form->add('create', 'submit', ['attr' => ['class' => 'btn-success']]);
@@ -66,7 +66,7 @@ class AdminGalleryController extends Controller
         $album = new Album();
         $album
             ->setGallery($gallery)
-            ->setUserId($this->getUser())
+            ->setUser($this->getUser())
         ;
 
         $form = $this->createForm(new AlbumFormType(), $album);
@@ -167,7 +167,7 @@ class AdminGalleryController extends Controller
 
         $photo = new Photo();
         $photo
-            ->setUserId($this->getUser())
+            ->setUser($this->getUser())
             ->setAlbum($album)
         ;
 

@@ -17,7 +17,7 @@ class Photo
     use ColumnTrait\CreatedAt;
     use ColumnTrait\Description;
     use ColumnTrait\Position;
-    use ColumnTrait\UserId;
+    use ColumnTrait\FosUser;
 
     /**
      * @var int
