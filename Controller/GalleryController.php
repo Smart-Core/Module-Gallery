@@ -40,7 +40,7 @@ class GalleryController extends Controller
             ->setTitle('Управление фотогалереей')
             ->setUri($this->generateUrl('smart_module.gallery.admin_gallery', ['id' => $this->gallery_id]));
 
-        return $this->render('GalleryModule::index.html.twig', [
+        return $this->get('twig')->render('GalleryModule::index.html.twig', [
             'albums'  => $albums,
         ]);
     }
@@ -71,7 +71,7 @@ class GalleryController extends Controller
 
         $photos = $em->getRepository('GalleryModule:Photo')->findBy(['album' => $album], ['id' => 'DESC']);
 
-        return $this->render('GalleryModule::photos.html.twig', [
+        return $this->get('twig')->render('GalleryModule::photos.html.twig', [
             'photos'  => $photos,
         ]);
     }
