@@ -2,7 +2,7 @@
 
 namespace SmartCore\Module\Gallery\Controller;
 
-use Knp\RadBundle\Controller\Controller;
+use Smart\CoreBundle\Controller\Controller;
 use SmartCore\Bundle\CMSBundle\Module\NodeTrait;
 use Symfony\Component\HttpFoundation\Response;
 

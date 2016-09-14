@@ -2,7 +2,7 @@
 
 namespace SmartCore\Module\Gallery\Controller;
 
-use Knp\RadBundle\Controller\Controller;
+use Smart\CoreBundle\Controller\Controller;
 use SmartCore\Module\Gallery\Entity\Album;
 use SmartCore\Module\Gallery\Entity\Gallery;
 use SmartCore\Module\Gallery\Entity\Photo;
