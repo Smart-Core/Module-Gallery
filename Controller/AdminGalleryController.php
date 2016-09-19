@@ -9,6 +9,7 @@ use SmartCore\Module\Gallery\Entity\Photo;
 use SmartCore\Module\Gallery\Form\Type\AlbumFormType;
 use SmartCore\Module\Gallery\Form\Type\GalleryFormType;
 use SmartCore\Module\Gallery\Form\Type\PhotoFormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,8 +25,8 @@ class AdminGalleryController extends Controller
         $gallery = new Gallery();
         $gallery->setUser($this->getUser());
 
-        $form = $this->createForm(new GalleryFormType(), $gallery);
-        $form->add('create', 'submit', ['attr' => ['class' => 'btn-success']]);
+        $form = $this->createForm(GalleryFormType::class, $gallery);
+        $form->add('create', SubmitType::class, ['attr' => ['class' => 'btn-success']]);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -69,10 +70,10 @@ class AdminGalleryController extends Controller
             ->setUser($this->getUser())
         ;
 
-        $form = $this->createForm(new AlbumFormType(), $album);
+        $form = $this->createForm(AlbumFormType::class, $album);
         $form
             ->remove('is_enabled')
-            ->add('create album', 'submit', ['attr' => ['class' => 'btn-success']]);
+            ->add('create album', SubmitType::class, ['attr' => ['class' => 'btn-success']]);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -118,9 +119,9 @@ class AdminGalleryController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(new GalleryFormType(), $gallery);
-        $form->add('update', 'submit', ['attr' => ['class' => 'btn-success']])
-             ->add('cancel', 'submit');
+        $form = $this->createForm(GalleryFormType::class, $gallery);
+        $form->add('update', SubmitType::class, ['attr' => ['class' => 'btn-success']])
+             ->add('cancel', SubmitType::class);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -171,8 +172,8 @@ class AdminGalleryController extends Controller
             ->setAlbum($album)
         ;
 
-        $form = $this->createForm(new PhotoFormType(), $photo);
-        $form->add('upload', 'submit', ['attr' => ['class' => 'btn btn-success']]);
+        $form = $this->createForm(PhotoFormType::class, $photo);
+        $form->add('upload', SubmitType::class, ['attr' => ['class' => 'btn btn-success']]);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -245,10 +246,10 @@ class AdminGalleryController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $form = $this->createForm(new AlbumFormType(), $album);
-        $form->add('update', 'submit', ['attr' => ['class' => 'btn btn-success']])
-             ->add('delete', 'submit', ['attr' => ['class' => 'btn btn-danger', 'onclick' => "return confirm('Вы уверены, что хотите удалить альбом?')"]])
-             ->add('cancel', 'submit');
+        $form = $this->createForm(AlbumFormType::class, $album);
+        $form->add('update', SubmitType::class, ['attr' => ['class' => 'btn btn-success']])
+             ->add('delete', SubmitType::class, ['attr' => ['class' => 'btn btn-danger', 'onclick' => "return confirm('Вы уверены, что хотите удалить альбом?')"]])
+             ->add('cancel', SubmitType::class);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -316,12 +317,12 @@ class AdminGalleryController extends Controller
             return $this->redirectToRoute('smart_module.gallery.admin_photo', ['album_id' => $album_id, 'gallery_id' => $gallery_id, 'id' => $id]);
         }
 
-        $form = $this->createForm(new PhotoFormType(), $photo);
+        $form = $this->createForm(PhotoFormType, $photo);
         $form
             ->remove('file')
-            ->add('update', 'submit', ['attr' => ['class' => 'btn btn-success']])
-            ->add('delete', 'submit', ['attr' => ['class' => 'btn btn-danger', 'onclick' => "return confirm('Вы уверены, что хотите удалить фотографию?')"]])
-            ->add('cancel', 'submit', ['attr' => ['class' => 'btn-default', 'formnovalidate' => 'formnovalidate']])
+            ->add('update', SubmitType::class, ['attr' => ['class' => 'btn btn-success']])
+            ->add('delete', SubmitType::class, ['attr' => ['class' => 'btn btn-danger', 'onclick' => "return confirm('Вы уверены, что хотите удалить фотографию?')"]])
+            ->add('cancel', SubmitType::class, ['attr' => ['class' => 'btn-default', 'formnovalidate' => 'formnovalidate']])
         ;
 
         if ($request->isMethod('POST')) {

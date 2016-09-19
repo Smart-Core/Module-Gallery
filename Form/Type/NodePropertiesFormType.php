@@ -3,6 +3,7 @@
 namespace SmartCore\Module\Gallery\Form\Type;
 
 use SmartCore\Bundle\CMSBundle\Module\AbstractNodePropertiesFormType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class NodePropertiesFormType extends AbstractNodePropertiesFormType
@@ -15,7 +16,7 @@ class NodePropertiesFormType extends AbstractNodePropertiesFormType
         }
 
         $builder
-            ->add('gallery_id', 'choice',   ['choices' => $galleries])
+            ->add('gallery_id', ChoiceType::class,   ['choices' => $galleries])
         ;
     }
 

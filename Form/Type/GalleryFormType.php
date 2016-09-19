@@ -3,6 +3,7 @@
 namespace SmartCore\Module\Gallery\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,7 +13,7 @@ class GalleryFormType extends AbstractType
     {
         $builder
             ->add('title', null, ['attr' => ['autofocus' => 'autofocus']])
-            ->add('order_albums_by', 'choice', [
+            ->add('order_albums_by', ChoiceType::class, [
                 'choices' => [
                     0 => 'По дате создания',
                     1 => 'По заданной позиции (по возрастанию)',
