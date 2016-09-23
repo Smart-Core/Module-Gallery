@@ -2,6 +2,7 @@
 
 namespace SmartCore\Module\Gallery\Form\Type;
 
+use SmartCore\Module\Gallery\Entity\Gallery;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,11 +29,11 @@ class GalleryFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'SmartCore\Module\Gallery\Entity\Gallery',
+            'data_class' => Gallery::class,
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'smart_module_gallery';
     }

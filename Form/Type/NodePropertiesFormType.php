@@ -12,15 +12,15 @@ class NodePropertiesFormType extends AbstractNodePropertiesFormType
     {
         $galleries = [];
         foreach ($this->em->getRepository('GalleryModule:Gallery')->findAll() as $gallery) {
-            $galleries[$gallery->getId()] = $gallery;
+            $galleries[(string) $gallery] = $gallery->getId();
         }
 
         $builder
-            ->add('gallery_id', ChoiceType::class,   ['choices' => $galleries])
+            ->add('gallery_id', ChoiceType::class, ['choices' => $galleries])
         ;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'smart_module_gallery_node_properties';
     }

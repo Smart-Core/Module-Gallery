@@ -24,7 +24,7 @@ class PhotoFormType extends AbstractType
         ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'smart_module_gallery_photo';
     }
