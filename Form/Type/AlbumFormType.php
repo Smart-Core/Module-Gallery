@@ -2,6 +2,7 @@
 
 namespace SmartCore\Module\Gallery\Form\Type;
 
+use SmartCore\Module\Gallery\Entity\Album;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,7 @@ class AlbumFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'SmartCore\Module\Gallery\Entity\Album',
+            'data_class' => Album::class,
         ]);
     }
 

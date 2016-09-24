@@ -2,6 +2,7 @@
 
 namespace SmartCore\Module\Gallery\Form\Type;
 
+use SmartCore\Module\Gallery\Entity\Photo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,7 @@ class PhotoFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'SmartCore\Module\Gallery\Entity\Photo',
+            'data_class' => Photo::class,
         ]);
     }
 
