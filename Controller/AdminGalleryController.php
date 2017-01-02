@@ -41,7 +41,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        return $this->render('GalleryModule:Admin:index.html.twig', [
+        return $this->render('@GalleryModule/Admin/index.html.twig', [
             'form'      => $form->createView(),
             'galleries' => $em->getRepository('GalleryModule:Gallery')->findAll(),
         ]);
@@ -94,7 +94,7 @@ class AdminGalleryController extends Controller
             }
         }
 
-        return $this->render('GalleryModule:Admin:gallery.html.twig', [
+        return $this->render('@GalleryModule/Admin/gallery.html.twig', [
             'form'       => $form->createView(),
             'folderPath' => $folderPath,
             'albums'     => $em->getRepository('GalleryModule:Album')->findBy(['gallery' => $id], ['id' => 'DESC']),
@@ -138,7 +138,7 @@ class AdminGalleryController extends Controller
             }
         }
 
-        return $this->render('GalleryModule:Admin:gallery_edit.html.twig', [
+        return $this->render('@GalleryModule/Admin/gallery_edit.html.twig', [
             'form'      => $form->createView(),
             'gallery'   => $gallery,
         ]);
@@ -220,7 +220,7 @@ class AdminGalleryController extends Controller
             }
         }
 
-        return $this->render('GalleryModule:Admin:album.html.twig', [
+        return $this->render('@GalleryModule/Admin/album.html.twig', [
             'form'      => $form->createView(),
             'photos'    => $em->getRepository('GalleryModule:Photo')->findBy(['album' => $album], ['position' => 'DESC', 'id' => 'DESC']),
             'album'     => $album,
@@ -279,7 +279,7 @@ class AdminGalleryController extends Controller
             }
         }
 
-        return $this->render('GalleryModule:Admin:album_edit.html.twig', [
+        return $this->render('@GalleryModule/Admin/album_edit.html.twig', [
             'form'  => $form->createView(),
             'album' => $album,
         ]);
@@ -364,7 +364,7 @@ class AdminGalleryController extends Controller
             }
         }
 
-        return $this->render('GalleryModule:Admin:photo.html.twig', [
+        return $this->render('@GalleryModule/Admin/photo.html.twig', [
             'form'  => $form->createView(),
             'photo' => $photo,
         ]);
