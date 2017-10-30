@@ -2,11 +2,11 @@
 smart_module.gallery:
     path: /
     defaults:
-        _controller: GalleryModule:Gallery:index
+        _controller: GalleryModuleBundle:Gallery:index
 
 smart_module.gallery.album:
     path: /{id}/
     defaults:
-        _controller: GalleryModule:Gallery:album
+        _controller: GalleryModuleBundle:Gallery:album
     requirements:
         id: \d+

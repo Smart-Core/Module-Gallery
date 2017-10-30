@@ -43,7 +43,7 @@ class AdminGalleryController extends Controller
 
         return $this->render('@GalleryModule/Admin/index.html.twig', [
             'form'      => $form->createView(),
-            'galleries' => $em->getRepository('GalleryModule:Gallery')->findAll(),
+            'galleries' => $em->getRepository('GalleryModuleBundle:Gallery')->findAll(),
         ]);
     }
 
@@ -58,7 +58,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $gallery = $em->find('GalleryModule:Gallery', $id);
+        $gallery = $em->find('GalleryModuleBundle:Gallery', $id);
 
         if (empty($gallery)) {
             throw $this->createNotFoundException();
@@ -97,7 +97,7 @@ class AdminGalleryController extends Controller
         return $this->render('@GalleryModule/Admin/gallery.html.twig', [
             'form'       => $form->createView(),
             'folderPath' => $folderPath,
-            'albums'     => $em->getRepository('GalleryModule:Album')->findBy(['gallery' => $id], ['id' => 'DESC']),
+            'albums'     => $em->getRepository('GalleryModuleBundle:Album')->findBy(['gallery' => $id], ['id' => 'DESC']),
             'gallery'    => $gallery,
         ]);
     }
@@ -113,7 +113,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $gallery = $em->find('GalleryModule:Gallery', $id);
+        $gallery = $em->find('GalleryModuleBundle:Gallery', $id);
 
         if (empty($gallery)) {
             throw $this->createNotFoundException();
@@ -160,7 +160,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $album = $em->find('GalleryModule:Album', $id);
+        $album = $em->find('GalleryModuleBundle:Album', $id);
 
         if (empty($album) or $album->getGallery()->getId() != $gallery_id) {
             throw $this->createNotFoundException();
@@ -194,7 +194,7 @@ class AdminGalleryController extends Controller
                 }
 
                 $album
-                    ->setPhotosCount($em->getRepository('GalleryModule:Photo')->countInAlbum($photo->getAlbum()))
+                    ->setPhotosCount($em->getRepository('GalleryModuleBundle:Photo')->countInAlbum($photo->getAlbum()))
                     ->setLastImageId($photo->getImageId())
                 ;
 
@@ -222,7 +222,7 @@ class AdminGalleryController extends Controller
 
         return $this->render('@GalleryModule/Admin/album.html.twig', [
             'form'      => $form->createView(),
-            'photos'    => $em->getRepository('GalleryModule:Photo')->findBy(['album' => $album], ['position' => 'DESC', 'id' => 'DESC']),
+            'photos'    => $em->getRepository('GalleryModuleBundle:Photo')->findBy(['album' => $album], ['position' => 'DESC', 'id' => 'DESC']),
             'album'     => $album,
             'albumPath' => $albumPath,
         ]);
@@ -240,7 +240,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $album = $em->find('GalleryModule:Album', $id);
+        $album = $em->find('GalleryModuleBundle:Album', $id);
 
         if (empty($album) or $album->getGallery()->getId() != $gallery_id) {
             throw $this->createNotFoundException();
@@ -301,7 +301,7 @@ class AdminGalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $photo = $em->find('GalleryModule:Photo', $id);
+        $photo = $em->find('GalleryModuleBundle:Photo', $id);
 
         if (empty($photo) or $photo->getAlbum()->getId() != $album_id or $photo->getAlbum()->getGallery()->getId() != $gallery_id) {
             throw $this->createNotFoundException();
@@ -342,10 +342,10 @@ class AdminGalleryController extends Controller
                     $this->remove($photo, true);
                     $this->addFlash('success', 'Photo deleted successfully.');
 
-                    $album->setPhotosCount($em->getRepository('GalleryModule:Photo')->countInAlbum($album));
+                    $album->setPhotosCount($em->getRepository('GalleryModuleBundle:Photo')->countInAlbum($album));
 
                     if ($album->getCoverImageId() == $id) {
-                        $lastPhoto = $em->getRepository('GalleryModule:Photo')->findOneBy(['album' => $album], ['id' => 'DESC']);
+                        $lastPhoto = $em->getRepository('GalleryModuleBundle:Photo')->findOneBy(['album' => $album], ['id' => 'DESC']);
                         $album->setCoverImageId(empty($lastPhoto) ? null : $lastPhoto->getImageId());
                     }
 

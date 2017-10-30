@@ -11,7 +11,7 @@ class NodePropertiesFormType extends AbstractNodePropertiesFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $galleries = [];
-        foreach ($this->em->getRepository('GalleryModule:Gallery')->findAll() as $gallery) {
+        foreach ($this->em->getRepository('GalleryModuleBundle:Gallery')->findAll() as $gallery) {
             $galleries[(string) $gallery] = $gallery->getId();
         }
 

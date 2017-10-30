@@ -23,7 +23,7 @@ class GalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        switch ($em->find('GalleryModule:Gallery', $this->gallery_id)->getOrderAlbumsBy()) {
+        switch ($em->find('GalleryModuleBundle:Gallery', $this->gallery_id)->getOrderAlbumsBy()) {
             case 1:
                 $albumsOrderBy = ['position' => 'ASC'];
                 break;
@@ -34,7 +34,7 @@ class GalleryController extends Controller
                 $albumsOrderBy = ['id' => 'DESC'];
         }
 
-        $albums = $em->getRepository('GalleryModule:Album')->findBy(['is_enabled' => true, 'gallery' => $this->gallery_id], $albumsOrderBy);
+        $albums = $em->getRepository('GalleryModuleBundle:Album')->findBy(['is_enabled' => true, 'gallery' => $this->gallery_id], $albumsOrderBy);
 
         $this->node->addFrontControl('manage_gallery')
             ->setTitle('Управление фотогалереей')
@@ -57,7 +57,7 @@ class GalleryController extends Controller
         /** @var \Doctrine\ORM\EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
-        $album = $em->getRepository('GalleryModule:Album')->find($id);
+        $album = $em->getRepository('GalleryModuleBundle:Album')->find($id);
 
         if (empty($album) or $this->gallery_id != $album->getGallery()->getId() or $album->isDisabled()) {
             throw $this->createNotFoundException();
@@ -69,7 +69,7 @@ class GalleryController extends Controller
 
         $this->get('cms.breadcrumbs')->add($album->getId(), $album->getTitle());
 
-        $photos = $em->getRepository('GalleryModule:Photo')->findBy(['album' => $album], ['id' => 'DESC']);
+        $photos = $em->getRepository('GalleryModuleBundle:Photo')->findBy(['album' => $album], ['id' => 'DESC']);
 
         return $this->render('@GalleryModule/photos.html.twig', [
             'photos'  => $photos,

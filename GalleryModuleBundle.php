@@ -4,7 +4,7 @@ namespace SmartCore\Module\Gallery;
 
 use SmartCore\Bundle\CMSBundle\Module\ModuleBundle;
 
-class GalleryModule extends ModuleBundle
+class GalleryModuleBundle extends ModuleBundle
 {
     protected $adminMenuBeforeCode = '<i class="fa fa-object-ungroup"></i>';
 
@@ -23,7 +23,7 @@ class GalleryModule extends ModuleBundle
             'items' => [],
         ];
 
-        foreach ($em->getRepository('GalleryModule:Gallery')->findAll() as $gallery) {
+        foreach ($em->getRepository('GalleryModuleBundle:Gallery')->findAll() as $gallery) {
             $data['items']['edit_slider_'.$gallery->getId()] = [
                 'title' => 'Редактировать галерею: <b>'.$gallery->getTitle().'</b>',
                 'descr' => '',
